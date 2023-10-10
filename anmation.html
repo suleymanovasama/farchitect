@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+</head>
+
+<style>
+  /* Slayt konteynırını ve içeriği stilize edin */
+  .swiper-container {
+    width: 100%;
+    height: 100vh;
+    /* İstenilen yüksekliği ayarlayın */
+    background-color: #f0f0f0;
+    /* Slayt arkaplan rengi */
+    overflow: hidden;
+    /* Metinlerin taşmasını önler */
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slide-content {
+    text-align: center;
+    transform: translateX(-100%);
+    /* Başlangıçta sola kaydırılmış */
+    transition: transform 0.5s ease-in-out;
+    /* Animasyon süresi ve eğri ayarları */
+  }
+
+  /* Sola kaydırma animasyonunu etkinleştirin */
+  .swiper-slide.swiper-slide-active .slide-content {
+    transform: translateX(0);
+    /* Aktif slayt için metni sağa kaydırın */
+  }
+
+  h2 {
+    opacity: 1;
+    -webkit-transform: skew(0deg, 0deg);
+    transform: skew(50deg, 0deg);
+    transition-delay: 1s;
+    visibility: visible;
+    transition: all .5s ease-in-out;
+  }
+  
+@keyframes scaleAnim1 {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes rotateAnim {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scaleAnim2 {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.8);
+    background: #ffffff;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.details_link{
+  opacity: 1;
+  transition-delay: 1.5s;
+  transform: translateY(0);
+  transition: all .5s ease-in-out;
+}
+.details_link a {
+  
+  align-items: center;
+    color: #a6a182;
+    display: flex;
+
+}
+.details_link a .link_text{
+  color: #a6a182;
+  margin-right: 1.875rem;
+  text-transform: none;
+  list-style: none;
+text-decoration: none;
+}
+.details_link a .link_icon{
+  align-items: center;
+    display: inline-flex;
+    position: relative;
+}
+.details_link a .link_icon .line{
+  background-color: #a6a182;
+    display: inline-block;
+    height: 0.0625rem;
+    position: absolute;
+    right: 50%;
+    top: 49.4%;
+    -webkit-transform-origin: right;
+    transform-origin: right;
+    transition: all .5s ease-in-out;
+    width: 2.1875rem;
+    z-index: 1;
+}
+.details_link a .link_icon .circle{
+  border: 1px solid #a6a182;
+    border-radius: 100%;
+    display: inline-block;
+    height: 2.25rem;
+    position: relative;
+    width: 2.25rem;
+}
+.details_link a .link_icon .dot{
+  background-color: #a6a182;
+    border-radius: 100%;
+    display: inline-block;
+    height: 0.375rem;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 0.375rem;
+}
+.details_link a:hover{
+  outline: none;
+    text-decoration: none;
+}
+.details_link a .link_icon .line{
+  background-color: #a6a182;
+    display: inline-block;
+    height: 0.0625rem;
+    position: absolute;
+    right: 50%;
+    top: 49.4%;
+    -webkit-transform-origin: right;
+    transform-origin: right;
+    transition: all .5s ease-in-out;
+    width: 2.1875rem;
+    z-index: 1;
+}
+.details_link a:hover .link_icon .line{
+      -webkit-animation: scaleAnim1 2s linear infinite;
+      animation: scaleAnim1 2s linear infinite;
+}
+.details_link a:hover .link_icon .circle{
+  animation: rotateAnim 7s linear infinite;
+    border-style: dashed;
+
+}
+.details_link a .link_icon .circle{
+  border: 1px solid #a6a182;
+    border-radius: 100%;
+    display: inline-block;
+    height: 2.25rem;
+    position: relative;
+    width: 2.25rem;
+}
+.details_link a .link_icon .dot{
+  background-color: #a6a182;
+    border-radius: 100%;
+    display: inline-block;
+    height: 0.375rem;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 0.375rem;
+}
+
+.details_link a:hover .link_icon .dot{
+  animation: scaleAnim2 2s ease-in-out infinite;
+}
+.meta{
+  font-size: .875rem;
+    font-weight: 500;
+    letter-spacing: .1875rem;
+    opacity: 0;
+    text-transform: uppercase;
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+    transition: all .5s ease-in-out;
+    visibility: hidden;
+}
+.key {
+    border-bottom: 1px solid gray;
+    margin-top: 50px;
+    background: #ffc700;
+    padding-top: 7%;
+    padding-bottom: 7%;
+}
+
+.figures-text {
+    margin-bottom: 45px;
+}
+
+.figures-text p {
+    margin-bottom: 1.875rem;
+    font-weight: 600;
+    font-size: 1.45rem;
+    letter-spacing: .75px;
+    line-height: 1.5em;
+    width: 23.25rem;
+}
+
+.figures-button a {
+    position: relative;
+    width: 22.25rem;
+    padding: 23px 51px;
+    text-align: center;
+    color: #000;
+    border: 0.125rem solid transparent;
+    background-color: #fff;
+    transition: background-color .25s ease-out .1s, color .35s ease-out, box-shadow .35s ease-out;
+    display: inline-table;
+    vertical-align: middle;
+    position: relative;
+    border-radius: 1.875rem;
+    box-sizing: border-box;
+}
+
+.figures-button a::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    border-radius: 50px;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.figures-button a:hover::before {
+    width: 100%;
+    transform-origin: center;
+    transform: scaleX(1);
+    height: 100%;
+    border-radius: 1.875rem;
+}
+
+.figures-button a:hover {
+    background: #000;
+    transition: 0.5s;
+}
+
+.figures-button a span {
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.figures-button a:hover span {
+    color: #fff;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 5;
+}
+
+.key-info {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
+}
+
+.figures-revenues {
+    display: flex;
+    flex: 0.6;
+    justify-content: space-between;
+}
+
+.reven-capit .fig-value {
+    margin-bottom: 35px;
+    position: relative;
+}
+
+.operat-emplo .fig-value {
+    margin-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.fig-value p span {
+    margin: 0;
+    font-weight: 400;
+    font-size: 4rem;
+    letter-spacing: 1.5px;
+    line-height: 1em;
+}
+
+.fig-value p {
+    font-weight: 400;
+    font-size: 4rem;
+    letter-spacing: 1.5px;
+    line-height: 1em;
+}
+
+#scrollButton {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px;
+      background-color: #007BFF;
+      color: #fff;
+      cursor: pointer;
+    }
+
+
+
+</style>
+
+<body>
+   <!-- <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="slide-content">
+          <div class="meta">
+            Landscape
+          </div>
+          <h2>Slide 1</h2>
+          <p class="slide-text">Bu birinci slayttır.</p>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="slide-content">
+          <h2>Slide 2</h2>
+          <p class="slide-text">Bu ikinci slayttır.</p>
+        </div>
+      </div>
+       Diğer slaytları buraya ekleyin -->
+    <!-- </div>
+    <div class="swiper-pagination"></div>
+  </div> --> 
+  <div class="key">
+   
+    <div class="key-info container">
+  
+    <div class="figures-revenues">
+<!--   
+      <div class="reven-capit">
+        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 612 792">
+          <path d="M424,142.5l-34.4,38.4a581.1,581.1,0,0,0-44.9,57.6,748.5,748.5,0,0,0-41.5,68.1c-13.4,24.8-25.5,50.4-36.3,76S246,435.8,238,461.7c-2.2,7.1-4.3,14.4-6.3,21.7s-3.7,14.6-5.4,22-3.3,14.7-4.8,22.2-2.9,14.8-4.1,22.2a15.5,15.5,0,0,0-.4,2.1h0c-.5,2.7-1,6-1.7,9.1a45.8,45.8,0,0,1-2.8,8.4l-1.2,1.9A10.9,10.9,0,0,1,210,573a10.7,10.7,0,0,1-1.4,1.6l-1.5,1.5a11.6,11.6,0,0,1-2.4,2,12,12,0,0,1-2.7,1.6,19.2,19.2,0,0,1-6.6,1.9,21.7,21.7,0,0,1-7.2-.3,26.4,26.4,0,0,1-6.8-2.5,26.7,26.7,0,0,1-5.7-4.3c-6.7-6.8-5.8-15.8-5.1-24.6q.3-4.5.9-9c.3-3,.8-6.1,1.3-9.1s1-6.1,1.6-9.1l1.8-8.9c1.1-5.1,2.3-10.2,3.5-15.3s2.6-10.2,4-15.2,2.7-10.1,4.1-15.1l4.3-15.1c7-24.4,15.2-48.7,24.7-72.7s20-47.7,31.7-70.9,24.3-45.5,38-67.2,27.9-42.1,43.2-61.7c17.5-21.1,54.5-66.2,73.2-83.1a26.3,26.3,0,0,1,10-5.5,20.9,20.9,0,0,1,5.5-.8,18.7,18.7,0,0,1,5.3.5,25.4,25.4,0,0,1,6.8,2.7,22.7,22.7,0,0,1,5.4,4.3,17.9,17.9,0,0,1,3.8,5.6,23.8,23.8,0,0,1,2,6.7c.1,1.3.2,2.6.2,3.9-.4,11.2-10.7,19.5-17.9,27.6m-35.9,37,34.5-38.6c6.7-7.4,16.9-15.8,17.2-26,0-1.2-.1-2.4-.2-3.6a19.7,19.7,0,0,0-1.8-6.1,17.5,17.5,0,0,0-3.4-5.1,23.4,23.4,0,0,0-4.9-3.9,21.7,21.7,0,0,0-6.3-2.4,14.8,14.8,0,0,0-4.7-.5,20.8,20.8,0,0,0-5,.7,29.6,29.6,0,0,0-4.9,2c-7.6,4.1-31.4,32.1-39,40.2l-38.3,45.7-6.6,8.7c-12.8,17-25,34.6-36.4,52.8-13.7,21.7-26.3,44.1-37.9,67s-22.3,46.8-31.7,70.8-17.6,48.1-24.6,72.4c-1.4,5.2-2.9,10.3-4.3,15.1s-2.8,10.1-4.1,15.1S183,494,181.8,499s-2.4,10.1-3.5,15.3c-.7,2.9-1.3,5.9-1.9,8.8s-1.1,6-1.6,9-.9,6-1.3,9-.6,6-.8,9c-.6,8-1.6,16.7,4.5,22.9a19.7,19.7,0,0,0,5.2,3.9,19.3,19.3,0,0,0,6.2,2.3,17.8,17.8,0,0,0,6.5.3,15.9,15.9,0,0,0,6-1.7,11.6,11.6,0,0,0,2.4-1.4,12.4,12.4,0,0,0,2.2-1.8l1.4-1.4,1.3-1.5,1.2-1.6a14,14,0,0,0,1-1.6c2.2-4.2,3.4-11.6,4.3-17l.4-2.1q1.9-11.1,4.2-22.2c1.4-7.4,3-14.9,4.7-22.3s3.6-14.7,5.5-22.1,4.1-14.5,6.3-21.7c8.1-26,17.8-52.7,29-79.3s23-51.3,36.4-76.2A744,744,0,0,1,343,237.3,570.8,570.8,0,0,1,388.1,179.5Z" style="fill: #2d75bc"/>
+        </svg>
+        <div class="fig-value">
+          <p><span>€</span><span class="stat-number">7.6</span><span>B</span></p>
+          <span>Revenues</span>
+        </div> 
+  
+        <div class="fig-value">
+          <p>€<span class="stat-number">35</span>B</p>
+          <span>Capitalization</span>
+        </div>
+      </div>
+   -->
+      <div  class="operat-emplo">
+        <div class="fig-value">
+          <p>€<span class="stat-number">584</span>M</p>
+          <span>Operating Cash Flow</span>
+        </div>
+        <div class="fig-value">
+          <p><span class="stat-number">21.146</span></p>
+          <span>Employees</span>
+        </div>
+        <div class="fig-value">
+          <p><span class="stat-number">21.146</span></p>
+          <span>Employees</span>
+        </div>
+        <div class="fig-value">
+          <p><span class="stat-number">21.146</span></p>
+          <span>Employees</span>
+        </div>
+      </div>
+  
+  
+    </div>
+  
+  </div>
+  </div>
+
+  <button id="scrollButton" onclick="scrollToTop()">OK</button>
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://use.typekit.net/ebp7xrq.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var button = document.getElementById('scrollButton');
+      
+      // Show/hide button based on scroll position
+      window.onscroll = function() {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+          button.style.display = "block";
+        } else {
+          button.style.display = "none";
+        }
+      };
+    });
+
+    // Scroll to top function
+    function scrollToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $(window).scroll(function() {
+        var keyElement = $('.key');
+        var keyTop = keyElement.offset().top;
+        var keyBottom = keyTop + keyElement.outerHeight();
+        var viewportTop = $(window).scrollTop();
+        var viewportBottom = viewportTop + $(window).height();
+  
+        if (keyBottom > viewportTop && keyTop < viewportBottom) {
+          $('.stat-number').each(function() {
+            var size = $(this).text().split(".")[1] ? $(this).text().split(".")[1].length : 0;
+            $(this).prop('Counter', 0).animate({
+              Counter: $(this).text()
+            }, {
+              duration: 1800,
+              step: function(func) {
+                $(this).text(parseFloat(func).toFixed(size));
+              }
+            });
+          });
+  
+          // birdefe isledesi olsam kodu commenti acacam
+          $(window).off('scroll');
+        }
+      });
+    });
+
+
+    try{Typekit.load({ async: true });}catch(e){}
+    
+    </script>
+  
+  
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      direction: 'vertical',
+      effect: 'Creative',
+      mousewheel: true,
+      slidesPerView: 1,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      }
+    });
+  </script>
+
+
+  
+</body>
+
+</html>
